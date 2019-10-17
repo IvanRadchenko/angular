@@ -17,10 +17,15 @@ import { Component } from '@angular/core';
       type="text"
       [(ngModel)]="name"
       />
+      <input
+      type="text"
+      #username
+      />
       <p>{{name}}</p>
     </div>
     <div>
     <button type="button" (click)="handleClick()">Click Me</button>
+    <button type="button" (click)="onClick(username.value)">Get value from Username</button>
     </div>
   `
 })
@@ -37,5 +42,10 @@ export class AppComponent {
 
   handleChange(value: string) {
     this.name = value;
+  }
+
+  onClick(value: string) {
+    this.name = value;
+    console.log(value);
   }
 }
