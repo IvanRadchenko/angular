@@ -1,4 +1,9 @@
 import { Component } from '@angular/core';
+interface Passengers {
+  id: number,
+  fullname: string,
+  checkedIn: boolean,
+}
 
 @Component({
   selector: 'app-root',
@@ -36,11 +41,46 @@ import { Component } from '@angular/core';
     <button type="button" (click)="handleClick()">Click Me</button>
     <button type="button" (click)="onClick(username.value)">Get value from Username</button>
     </div>
+    <div>
+    <h3>Airlines Passengers with Template expanded</h3>
+    <ul>
+      <template ngFor let-passenger let-i="index" [ngForOf]="passengers">
+       <li>
+         {{i}}:  {{passenger.fullname}}
+       </li>
+       </template>
+    </ul>
+   </div>
+    <div>
+     <h3>Airlines Passengers with implicit ForOf</h3>
+     <ul>
+        <li *ngFor="let passenger of passengers; let i = index;">
+          {{i}}:  {{passenger.fullname}}
+        </li>
+     </ul>
+    </div>
   `
 })
 export class AppComponent {
   title: string;
   name: string = '';
+  passengers: Passengers[] = [{
+    id: 1,
+    fullname: 'Stephen',
+    checkedIn: true
+    },{
+    id: 2,
+    fullname: 'Rose',
+    checkedIn: false
+    }, {
+    id: 3,
+    fullname: 'James',
+    checkedIn: true,
+    }
+  ]
+
+
+
   constructor(){
     this.title = 'Hello world';
   }

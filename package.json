@@ -27,6 +27,7 @@
     "start": "webpack-dev-server"
   },
   "devDependencies": {
+    "@angular/cli": "^8.3.12",
     "@types/core-js": "0.9.34",
     "@types/node": "6.0.46",
     "angular2-template-loader": "0.6.0",
