@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Passenger } from '..//../models/passenger.interface';
+import { PassengerDashboadService } from '../../passenger-dashboard.service';
 
 
 @Component({
@@ -44,7 +45,9 @@ import { Passenger } from '..//../models/passenger.interface';
   [items]="passengers"
   >
   </passenger-count>
-
+  <div *ngFor="let passenger of passengers">
+  {{ passenger.fullname}}
+  </div>
   <h3>Passenger Details Dumb Component</h3>
 
   <passenger-detail
@@ -112,28 +115,14 @@ export class PassengerDashboardComponent implements OnInit {
 
 
 
-  constructor(){
+  constructor(
+    private passengerDashboardService: PassengerDashboadService ,
+  ){
     this.title = 'Hello world';
   }
 
   ngOnInit() {
-    this.passengers  = [{
-      id: 1,
-      fullname: 'Stephen',
-      checkedIn: true,
-      children: null
-      },{
-      id: 2,
-      fullname: 'Rose',
-      checkedIn: false,
-      children: [{name: 'Ted', age: 12},{name: 'Chloe', age: 14}],
-      }, {
-      id: 3,
-      fullname: 'James',
-      checkedIn: true,
-      children: null
-      }
-    ]
+    this.passengers = this.passengerDashboardService.getPassengers();
   }
 
   handleEdit(event: Passenger){
@@ -144,7 +133,6 @@ export class PassengerDashboardComponent implements OnInit {
 
       return passenger;
     });
-    console.log(this.passengers)
   }
 
   handleRemove(event: Passenger){
