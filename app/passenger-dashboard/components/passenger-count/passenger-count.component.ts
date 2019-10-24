@@ -7,7 +7,7 @@ import { Passenger } from '../../models/passenger.interface';
   template: `<div>
     <h3>Passengers count Dumb Component</h3>
     <div>
-      Total Passengers: {{ countCheckedIn() }} / {{ items.length }}
+      Total Passengers: {{ countCheckedIn() }} / {{ items?.length }}
     </div>
    </div>`
 })

@@ -1,6 +1,10 @@
 import { Passenger } from './models/passenger.interface';
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+
+const PASSENGER_API: string ='/api/passengers';
 
 @Injectable( )
 export class PassengerDashboadService {
@@ -9,23 +13,15 @@ export class PassengerDashboadService {
     private http: Http
   ) {}
 
-  getPassengers(): Passenger[] {
-    return [{
-      id: 1,
-      fullname: 'Stephen',
-      checkedIn: true,
-      children: null
-      },{
-      id: 2,
-      fullname: 'Rose',
-      checkedIn: false,
-      children: [{name: 'Ted', age: 12},{name: 'Chloe', age: 14}],
-      }, {
-      id: 3,
-      fullname: 'James',
-      checkedIn: true,
-      children: null
-      }
-    ]
-  }
+  getPassengers(): Observable<Passenger[]> {
+    return this.http
+    .get(PASSENGER_API)
+    .map((response: Response) => response.json());
+  };
+
+  updatePassenger(passenger: Passenger): Observable<Passenger[]> {
+    return this.http
+    .put(`${PASSENGER_API}/${passenger.id}`, passenger)
+    .map((response: Response) => response.json());
+  };
 }

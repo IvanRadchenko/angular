@@ -1,1 +1,31 @@
-{}
+{
+  "passengers": [
+    {
+      "id": 1,
+      "fullname": "Stephen Evdasdan Lebovski",
+      "checkedIn": true,
+      "children": null
+    },
+    {
+      "id": 2,
+      "fullname": "Rose Pullover",
+      "checkedIn": false,
+      "children": [
+        {
+          "name": "Ted",
+          "age": 12
+        },
+        {
+          "name": "Chloe",
+          "age": 14
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "fullname": "James",
+      "checkedIn": true,
+      "children": null
+    }
+  ]
+}

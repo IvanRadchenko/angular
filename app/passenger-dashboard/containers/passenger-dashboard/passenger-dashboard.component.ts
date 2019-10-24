@@ -122,17 +122,24 @@ export class PassengerDashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.passengers = this.passengerDashboardService.getPassengers();
+    this.passengerDashboardService
+    .getPassengers()
+    .subscribe((data: Passenger[]) => this.passengers = data);
   }
 
   handleEdit(event: Passenger){
-    this.passengers = this.passengers.map((passenger: Passenger) => {
-      if (passenger.id === event.id) {
-       passenger = Object.assign({}, passenger, event);
-      }
+    this.passengerDashboardService
+    .updatePassenger(event)
+    .subscribe((data: Passenger[]) => {
+      this.passengers = this.passengers.map((passenger: Passenger) => {
+        if (passenger.id === event.id) {
+         passenger = Object.assign({}, passenger, event);
+        }
 
-      return passenger;
+        return passenger;
+      });
     });
+
   }
 
   handleRemove(event: Passenger){
@@ -151,7 +158,6 @@ export class PassengerDashboardComponent implements OnInit {
 
   onClick(value: string) {
     this.name = value;
-    console.log(value);
   }
 
 
