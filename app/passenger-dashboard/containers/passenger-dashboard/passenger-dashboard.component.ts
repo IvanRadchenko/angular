@@ -38,13 +38,27 @@ import { Passenger } from '..//../models/passenger.interface';
   <button type="button" (click)="handleClick()">Click Me</button>
   <button type="button" (click)="onClick(username.value)">Get value from Username</button>
   </div>
+  <hr>
 
   <passenger-count
   [items]="passengers"
   >
   </passenger-count>
-  <passenger-detail></passenger-detail>
+
+  <h3>Passenger Details Dumb Component</h3>
+
+  <passenger-detail
+    *ngFor="let passenger of passengers"
+    [detail]="passenger"
+    (remove)="handleRemove($event)"
+    (edit)="handleEdit($event)"
+  >
+  </passenger-detail>
+
   <div>
+  <hr>
+
+
   <h3>Airlines Passengers with Template expanded</h3>
   <ul>
     <template ngFor let-passenger let-i="index" [ngForOf]="passengers">
@@ -84,9 +98,9 @@ import { Passenger } from '..//../models/passenger.interface';
       {{i}}: {{passenger.fullname}}
       <div class="children">
           Children: {{ passenger.children?.length ||  0 }}
-      </div>
+          </div>
     </li>
- </ul>
+    </ul>
   </div>
   `
 })
@@ -100,19 +114,6 @@ export class PassengerDashboardComponent implements OnInit {
 
   constructor(){
     this.title = 'Hello world';
-  }
-
-  handleClick(){
-    this.name = "SomeName";
-  }
-
-  handleChange(value: string) {
-    this.name = value;
-  }
-
-  onClick(value: string) {
-    this.name = value;
-    console.log(value);
   }
 
   ngOnInit() {
@@ -134,5 +135,36 @@ export class PassengerDashboardComponent implements OnInit {
       }
     ]
   }
+
+  handleEdit(event: Passenger){
+    this.passengers = this.passengers.map((passenger: Passenger) => {
+      if (passenger.id === event.id) {
+       passenger = Object.assign({}, passenger, event);
+      }
+
+      return passenger;
+    });
+    console.log(this.passengers)
+  }
+
+  handleRemove(event: Passenger){
+    this.passengers = this.passengers.filter((passenger: Passenger) => {
+      return passenger.id !== event.id;
+    });
+  }
+
+  handleClick(){
+    this.name = "SomeName";
+  }
+
+  handleChange(value: string) {
+    this.name = value;
+  }
+
+  onClick(value: string) {
+    this.name = value;
+    console.log(value);
+  }
+
 
 }
