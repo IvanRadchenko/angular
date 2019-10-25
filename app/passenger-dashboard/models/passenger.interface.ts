@@ -4,6 +4,7 @@ export interface Passenger {
   checkedIn: boolean,
   children: Children[] | null,
   baggage: string,
+  checkedInDate?: number,
 }
 
 
