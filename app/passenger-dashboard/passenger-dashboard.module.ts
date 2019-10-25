@@ -7,9 +7,11 @@ import { HttpModule } from '@angular/http';
 import { PassengerDashboardComponent } from './containers/passenger-dashboard/passenger-dashboard.component';
 import { PassengerViewerComponent } from './containers/passenger-viewer/passenger-viewer.component';
 
+
 //Components
 import { PassengerCountComponent } from './components/passenger-count/passenger-count.component';
 import { PassengerDetailComponent } from './components/passenger-detail/passenger-detail.component';
+import { PassengerFormComponent } from './components/passenger-form/passenger-form.component';
 
 //Services
 import { PassengerDashboadService } from './passenger-dashboard.service';
@@ -20,6 +22,7 @@ import { PassengerDashboadService } from './passenger-dashboard.service';
     PassengerCountComponent,
     PassengerDetailComponent,
     PassengerViewerComponent,
+    PassengerFormComponent
   ],
   imports: [
     CommonModule,

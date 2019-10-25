@@ -4,7 +4,8 @@
       "id": 1,
       "fullname": "Stephen Evdasdan Lebovski",
       "checkedIn": true,
-      "children": null
+      "children": null,
+      "baggage": ""
     },
     {
       "id": 2,
@@ -19,13 +20,15 @@
           "name": "Chloe",
           "age": 14
         }
-      ]
+      ],
+      "baggage": ""
     },
     {
       "id": 3,
       "fullname": "James",
       "checkedIn": true,
-      "children": null
+      "children": null,
+      "baggage":""
     }
   ]
 }

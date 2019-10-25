@@ -3,6 +3,7 @@ export interface Passenger {
   fullname: string,
   checkedIn: boolean,
   children: Children[] | null,
+  baggage: string,
 }
 
 
