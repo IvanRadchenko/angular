@@ -1,10 +1,9 @@
 {
   "passengers": [
     {
+      "fullname": "32232ebovski",
       "id": 1,
-      "fullname": "Stephen Evdasdan Lebovski",
       "checkedIn": true,
-      "children": null,
       "baggage": "none"
     },
     {
@@ -28,7 +27,7 @@
       "fullname": "James",
       "checkedIn": true,
       "children": null,
-      "baggage":""
+      "baggage": ""
     }
   ]
 }
