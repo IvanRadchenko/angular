@@ -1,6 +1,7 @@
 import { Component, Input} from '@angular/core';
 import { Passenger } from '../../models/passenger.interface';
-
+import { Baggage } from '../../models/baggage.interface';
+ 
 @Component ({
   selector: 'passenger-form',
   styleUrls: ['passenger-form.component.scss'],
@@ -13,7 +14,12 @@ import { Passenger } from '../../models/passenger.interface';
     <input
       type="text"
       name="fullname"
+      required
+      #fullname="ngModel"
       [ngModel]="detail?.fullname">
+      <div *ngIf="fullname.errors?.required && fullname.dirty" class="error">
+        Passenger name is required
+      </div>
   </div>
 
   <div>
@@ -21,7 +27,12 @@ import { Passenger } from '../../models/passenger.interface';
   <input
     type="number"
     name="id"
+    required
+    #id="ngModel"
     [ngModel]="detail?.id">
+    <div *ngIf="id.errors?.required && id.touched" class="error">
+    Passenger name is ID
+    </div>
   </div>
 
   <div>
@@ -45,6 +56,13 @@ import { Passenger } from '../../models/passenger.interface';
         (ngModelChange)='toogleCheckIn($event)'>
         No
     </label>
+    <label>
+      <input
+        type="checkbox"
+        name="checkedIn"
+        [ngModel]="detail?.checkedIn"
+        (ngModelChange)='toogleCheckIn($event)'>
+    </label>
   </div>
 
   <div *ngIf="form.value.checkedIn">
@@ -56,14 +74,47 @@ import { Passenger } from '../../models/passenger.interface';
     >
   </div>
 
+  <div>
+  Luggage:
+  <select
+  name = "baggage"
+  [ngModel] = "detail?.baggage"
+  >
+    <option
+    *ngFor = "let item of baggage"
+    [value]="item.key"
+    [selected]="item.key === detail?.baggage"> 
+    {{item.value}}
+    </option>
+
+  </select>
+
+  </div>
+
   {{form.value | json}}
   </form>
   `
 })
 
 export class PassengerFormComponent {
+
+
   @Input()
   detail: Passenger;
+
+  baggage: Baggage[] = [{
+    key: 'none',
+    value: 'No baggage',
+  },
+  {
+    key: 'hand-only',
+    value: 'Hand baggage',
+  },
+  {
+    key: 'hold-only',
+    value: 'Hold baggage',
+  }
+  ];
 
   toogleCheckIn(checkedIn: boolean) {
     if (checkedIn) {
