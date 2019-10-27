@@ -44,6 +44,6 @@ export class PassengerViewerComponent implements OnInit {
     }
 
     goBack() {
-        this.router.navigate(['/passenger']);
+        this.router.navigate(['/passengers']);
     }
 }
